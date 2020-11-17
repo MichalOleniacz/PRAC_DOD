@@ -1,0 +1,14 @@
+{
+  "name": "prac_dod_back_end",
+  "version": "1.0.0",
+  "description": "Projekt dodatkowy PRAC_SPEC 2020/2021",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michal Oleniacz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

@@ -3,8 +3,13 @@
 # dependencies
 /front-end/node_modules
 /front-end/package-lock.json
+/front-end/.env
 /back-end/node_modules
+/back-end/.env
 /back-end/package-lock.json
+/pi/node_modules
+/pi/.env
+/pi/package-lock.json
 /.pnp
 .pnp.js
 

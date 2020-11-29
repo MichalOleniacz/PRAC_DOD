@@ -29,5 +29,5 @@ MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (e
     });
   };
 
-  insertNewData();
+  setInterval(insertNewData(), 20 * 1000);
 });

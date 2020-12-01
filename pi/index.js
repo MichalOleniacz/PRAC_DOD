@@ -1,6 +1,7 @@
 const express = require("express");
 const si = require("systeminformation");
 const assert = require("assert");
+const cron = require("node-cron");
 const MongoClient = require("mongodb").MongoClient;
 
 const { DetailedUsageInfoSchema } = require("./models/detailedUsageInfoSchema");
@@ -28,7 +29,7 @@ MongoClient.connect(
 
     const detailedCollection = db.collection(detailedCollectionName);
 
-    const getDetailedUsageInfo = async () => {
+    const postDetailedUsageInfo = async () => {
       let { currentload } = await si.currentLoad();
       let { total, free, used } = await si.mem();
       let { uptime } = await si.time();
@@ -55,6 +56,8 @@ MongoClient.connect(
       return body;
     };
 
-    setInterval(() => getDetailedUsageInfo(), 20 * 1000);
+    cron.schedule("20 * * * * * *", () => {
+      postDetailedUsageInfo();
+    });
   }
 );

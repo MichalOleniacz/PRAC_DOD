@@ -12,6 +12,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "joi": "^17.3.0",
     "mongodb": "^3.6.3",
     "systeminformation": "^4.30.7"
   }

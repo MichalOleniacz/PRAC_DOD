@@ -1,6 +1,7 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const cookie = require("cookie");
 
 const userMognooseSchema = new mongoose.Schema({
   name: {
@@ -25,7 +26,11 @@ const userMognooseSchema = new mongoose.Schema({
   isAdmin: Boolean,
 });
 
-const User = mongoose.model("User", userMognooseSchema);
+userMognooseSchema.methods.createJWT = function () {
+  return jwt.sign({ _id: this._id }, process.env.JWT_SALT);
+};
+
+const User = mongoose.model("User", userMognooseSchema, "User");
 
 const validateUser = (user) => {
   const userJoiSchema = Joi.object({

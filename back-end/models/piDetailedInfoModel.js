@@ -31,13 +31,13 @@ const detailedUsageInfoMongooseSchema = new mongoose.Schema({
   },
 });
 
-const DetailedUsageInfo = mongoose.model("Detailed", detailedUsageInfoMongooseSchema);
+const DetailedUsageInfo = mongoose.model("Detailed", detailedUsageInfoMongooseSchema, "Detailed");
 
 const validateDetailedUsageInfo = (body) => {
   const detailedUsageInfoJoiSchema = Joi.object({
     createdAt: Joi.date().required(),
-    cpuUsage: Joi.string().required().min(1).max(4),
-    ramUsage: Joi.string().required().min(1).max(4),
+    cpuUsage: Joi.number().required(),
+    ramUsage: Joi.number().required(),
     uptime: Joi.number().required(),
     type: Joi.string().required(),
   });

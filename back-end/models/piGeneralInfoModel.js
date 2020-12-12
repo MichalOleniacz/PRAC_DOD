@@ -10,12 +10,16 @@ const generalInfoMongooseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  network: {
-    type: Array,
-    required: true,
-  },
-  activeContainers: {
-    type: Number,
+  // network: {
+  // type: Array,
+  // required: true,
+  // },
+  // activeContainers: {
+  //   type: Number,
+  //   required: true,
+  // },
+  nodeVersion: {
+    type: String,
     required: true,
   },
   freeDiskSpace: {
@@ -35,15 +39,16 @@ const generalInfoMongooseSchema = new mongoose.Schema({
   },
 });
 
-const GeneralInfo = new mongoose.model("General", generalInfoMongooseSchema);
+const GeneralInfo = new mongoose.model("General", generalInfoMongooseSchema, "General");
 
 const validateGeneralInfo = (body) => {
   const generalInfoJoiSchema = Joi.object({
     createdAt: Joi.date().required(),
     os: Joi.string().required(),
-    network: Joi.array().required(),
-    activeContainers: Joi.number().required(),
+    // network: Joi.array().required(),
+    // activeContainers: Joi.number().required(),
     freeDiskSpace: Joi.number().required(),
+    nodeVersion: Joi.string().required(),
     pid: Joi.number().optional(),
     type: Joi.string().max(10),
   });

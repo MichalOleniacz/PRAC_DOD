@@ -29,13 +29,15 @@ app.use("/auth", auth);
 app.use("/reg", reg);
 app.use("/logs", logs);
 
+io.use(websocketAuth);
+
 io.on("connection", async (socket) => {
   console.log("connected");
   socket.on("newClientSession", async (req) => {
     socket.join("app");
   });
 
-  socket.on("Detailed", (req) =>{
+  socket.on("Detailed", (req) => {
   const { error } = validateDetailedUsageInfo(req);
   if (error) return;
 

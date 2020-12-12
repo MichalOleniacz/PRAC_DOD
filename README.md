@@ -1,70 +1,186 @@
-# Getting Started with Create React App
+# <span>🇵🇱</span>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+## Projekt dodatkowy - Pracownia specjalizująca 2020
 
-In the project directory, you can run:
+<br>
+<hr>
 
-### `npm start`
+## 📜 O projekcie:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### <b>Idea projektu</b>:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Projekt ma za zadanie monitorowanie zużycia zasobów Raspberry Pi 4B, wysyłanie logów poprzez WebSocket do bazy danych, gdzie będą przechowywane przez okres 7 dni.
 
-### `npm test`
+Pozwoli to po przejściu autoryzacji poprzez zarejestrowanego użytkownika na diagnostykę systemu poprzez interfejs aplikacji webowej, pokazującej zapisy z ostatniego tygodnia.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Nowe zapisy tworzone są co 20 sekund oraz w czasie rzeczywistym, dzięki użyciu WebSocket-ów, wysyłane odrazu do klienta.
 
-### `npm run build`
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### <b>Projekt podzielony jest na 4 części:</b>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Front-end - aplikację webową działającą po stronie klienta, interfejs aplikacji
+- Back-end - oprogramowanie działające na serwerze
+- Pi - oprogramowanie działające na moim Raspberry Pi w sieci lokalnej
+- Baza danych - MongoDB działające w chmurze
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
+<hr>
 
-### `npm run eject`
+## 🛠️ Technologie oraz struktura plików:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Całość aplikacji napisana została w języku JavaScript, z użyciem HTML i CSS po stronie klienta.
+<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### <b>Front-End</b>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Aplikacja webowa - interfejs użytkownika
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<details>
+  <summary>🖥️ <em>UI</em>: <a href="https://reactjs.org/"><b>React</b></a></summary><br>
 
-## Learn More
+<em> - biblioteka JavaScript służąca do tworzenia interfejsu użytkownika.</em>
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</details>
+<details>
+  <summary>🖥️ <em>Połączenie z serwerem</em>: <a href="https://www.axios.com/"><b>Axios</b></a>, <a href="https://www.socket.io/"><b>Socket.io-client</b></a> </summary><br>
+<em>  
+    <b>Axios</b> - biblioteka umożliwiające proste wysyłanie zapytań HTTP (RESTful)<br>
+    <b>Socket.io-client</b> - biblioteka umożliwiająca nawiązanie połączenia z serwerem z wykorzystaniem WebSocket (full-duplex w czasie rzeczywistym)  
+</em>
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+</details>
 
-### Code Splitting
+<details>
+  <summary>🖥️ <em>Wykresy/Wizualizacja danych</em>: <a href="https://www.chartjs.org/"><b>ChartJS</b></a></summary><br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<em> - biblioteka JavaScript umożliwiająca wydajną wizualizacje danych.</em>
+<br>
 
-### Analyzing the Bundle Size
+</details>
+<details>
+  <summary>🖥️ <em>Autoryzacja po stronie klienta</em>: <a href="https://www.jwt.io/"><b>JWT</b></a></summary><br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<em> - Token pozwalający na uwierzytelnianie.</em>
+<br>
 
-### Making a Progressive Web App
+</details>
+<details>
+  <summary>🖥️ <em>Routing</em>: <a href="https://reactrouter.com/"><b>React Router</b></a></summary><br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<em> - Routing dla ReactJS.</em>
+<br>
 
-### Advanced Configuration
+</details>
+<details>
+  <summary>🖥️ <em>Walidacja danych</em>: <a href="https://joi.dev/"><b>Joi</b></a></summary><br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<em>
+    - biblioteka umożliwająca sprawdzenie danych według zdefinowanego modelu
+</em>
+<br>
+</details>
+<br>
 
-### Deployment
+### <b>Back-End</b>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Oprogramowanie serwera
 
-### `npm run build` fails to minify
+<details>
+  <summary>🖥️ <em>Platforma</em>: <a href="https://nodejs.org/"><b>Node.js</b></a></summary><br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<em> - natywne środowisko JavaScript.</em>
+<br>
+
+</details>
+<details>
+  <summary>🖥️ <em>Framework</em>: <a href="https://expressjs.org/"><b>Express</b></a>, <a href="https://socket.io/"><b>Socket.io</b></a></summary><br>
+
+<em>
+    <b>Express</b>- framework do tworzenia aplikacji RESTful.<br>
+    <b>Socket.io</b>- biblioteka umożliwiająca utworzenie połączenia WebSocket.
+</em>
+<br>
+
+</details>
+<details>
+  <summary>🖥️ <em>Baza danych</em>: <a href="https://mongodb.com/"><b>MongoDB</b></a></summary><br>
+
+<em> - baza danych oparta na dokumentach JSON-like.</em>
+<br>
+
+</details>
+<details>
+  <summary>🖥️ <em>API bazy danych</em>: <a href="https://mongoose.com/"><b>Mongoose</b></a></summary><br>
+
+<em> - biblioteka bazująca na natywnym API MongoDB.</em>
+<br>
+
+</details>
+<details>
+  <summary>🖥️ <em>Autoryzacja/Uwierzytelnianie</em>: <a href="https://jwt.io/"><b>JWT</b></a>, <a href="https://jwt.io/"><b>bcrypt</b></a></summary><br>
+
+<em> <b>JWT</b> - Token uwierzytelniający.</em><br>
+<em> <b>bcrypt</b> - Szyfrowanie danych</em>
+<br>
+
+</details>
+<details>
+  <summary>🖥️ <em>Walidacja danych</em>: <a href="https://joi.dev/"><b>Joi</b></a></summary><br>
+
+<em>
+    - biblioteka umożliwająca sprawdzenie danych według zdefinowanego modelu
+</em>
+<br>
+</details>
+
+<br>
+
+### <b>Pi</b>
+
+Oprogramowanie działające na Raspberry Pi
+
+<details>
+  <summary>🖥️ <em>Platforma</em>: <a href="https://nodejs.org/"><b>Node.js</b></a></summary><br>
+
+<em> - natywne środowisko JavaScript.</em>
+<br>
+
+</details>
+<details>
+  <summary>🖥️ <em>Framework</em>: <a href="https://expressjs.org/"><b>Express</b></a>, <a href="https://socket.io/"><b>Socket.io-client</b></a></summary><br>
+
+<em>
+    <b>Express</b>- framework do tworzenia aplikacji RESTful.<br>
+    <b>Socket.io-client</b> - biblioteka umożliwiająca nawiązanie połączenia z serwerem z wykorzystaniem WebSocket (full-duplex w czasie rzeczywistym)  
+</em>
+<br>
+</details>
+<details>
+  <summary>🖥️ <em>Pobieranie danych</em>: <a href="https://systeminformation.com/"><b>Systeminformation</b></a></summary><br>
+
+<em>
+    - moduł Node.js pozwalający na zebranie danych o systemie 
+</em>
+<br>
+</details>
+<details>
+  <summary>🖥️ <em>Walidacja danych</em>: <a href="https://joi.dev/"><b>Joi</b></a></summary><br>
+
+<em>
+    - biblioteka umożliwająca sprawdzenie danych według zdefinowanego modelu
+</em>
+<br>
+</details>
+<details>
+  <summary>🖥️ <em>Scheduler</em>: <a href="https://www.npmjs.com/package/node-cron"><b>node-cron</b></a></summary><br>
+
+<em>
+    - biblioteka dodająca funkcjonalność opratą na UNIX'owym cron
+</em>
+<br>
+</details>

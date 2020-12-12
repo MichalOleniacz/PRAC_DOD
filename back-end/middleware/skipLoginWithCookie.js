@@ -17,7 +17,9 @@ module.exports = async function (req, res, next) {
     const valid = await bcrypt.compare(clientAddress, session.clientIP);
 
     if (valid) {
-      next();
-    } else res.status(401).send("Token unauthorized");
-  } else res.status(401).send("Unauthorized");
+      res.status(302);
+      res.setHeader("Location", "/ws");
+      return res.end();
+    } else next();
+  } else next();
 };

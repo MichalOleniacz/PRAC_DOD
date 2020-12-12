@@ -6,10 +6,10 @@ const cookie = require("cookie");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/userModel");
 const { Session } = require("../models/sessionModel");
-const authWithCookie = require("../middleware/authWithCookie");
+const skipLoginWithCookie = require("../middleware/skipLoginWithCookie");
 require("dotenv").config();
 
-router.post("/", authWithCookie, async (req, res) => {
+router.post("/", skipLoginWithCookie, async (req, res) => {
   const { error } = validateBody(req.body);
   if (error) return res.status(400).send(error);
 
@@ -25,7 +25,7 @@ router.post("/", authWithCookie, async (req, res) => {
     res.setHeader(
       "Set-Cookie",
       cookie.serialize("auth-token", token, {
-        httpOnly: true,
+        httpOnly: false,
         maxAge: 60 * 60 * 24,
       })
     );

@@ -14,7 +14,10 @@ router.post("/", async (req, res) => {
   if (user) return res.status(400).send("User alread registered");
 
   user = new User(_.pick(req.body, ["name", "email", "password"]));
-  let userSession = { clientID: user._id };
+  const userSession = {
+    createdAt: Date.now(),
+    clientID: user._id,
+  };
 
   const salt = await bcrypt.genSalt(10);
   const sessionSalt = await bcrypt.genSalt(10);
@@ -24,9 +27,10 @@ router.post("/", async (req, res) => {
 
   await user.save();
 
+  console.log(userSession);
   const { sessionError } = validateSession(userSession);
   if (!sessionError) {
-    const session = new Session(_.pick(userSession, ["clientID", "clientIP"]));
+    const session = new Session(_.pick(userSession, ["createdAt", "clientID", "clientIP"]));
     await session.save();
   }
 

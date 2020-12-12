@@ -1,14 +1,13 @@
-const validateBody = (body, detailedUsageInfoModel, { cb, next }) => {
+const validateBody = (body, model, { cb, next }) => {
   console.log(next);
 
-  try {
-    const value = detailedUsageInfoModel.validateAsync(body);
-    if (next) cb(value, next);
-  } catch (error) {
-    if (error) {
-      console.log(error);
-    }
+  const { error } = model.validate(body);
+  if (error) {
+    console.log(error);
+    return;
   }
+
+  cb(body, next);
 };
 
 module.exports = validateBody;

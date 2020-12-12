@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 const connect = require("./dbConnection");
-const { DetailedUsageInfo, validateDetailedUsageInfo } = require("../models/piDetailedInfoModel");
-const { GeneralInfo, validateGeneralInfo } = require("../models/piGeneralInfoModel");
 const websocketAuth = require("./middleware/websocketAuth");
 const cors = require("cors");
 const http = require("http").createServer(app);
@@ -16,6 +14,7 @@ const io = require("socket.io")(9001, {
 });
 require("dotenv").config();
 
+const { detailedWebSocketRoute, generalWebSocketRoute } = require("./routes/ws");
 const auth = require("./routes/auth");
 const reg = require("./routes/register");
 const logs = require("./routes/logs");
@@ -37,24 +36,8 @@ io.on("connection", async (socket) => {
     socket.join("app");
   });
 
-  socket.on("Detailed", (req) => {
-  const { error } = validateDetailedUsageInfo(req);
-  if (error) return;
-
-  socket.to("app").emit("Detailed", JSON.stringify(req));
-
-  const Detailed = new DetailedUsageInfo(req);
-  await Detailed.save();
-});
-  socket.on("General", (req) => {
-  const { error } = validateGeneralInfo(req);
-  if (error) return;
-
-  socket.to("app").emit("General", JSON.stringify(req));
-
-  const General = new GeneralInfo(req);
-  await General.save();
-});
+  socket.on("Detailed", (req) => detailedWebSocketRoute(req, socket));
+  socket.on("General", (req) => generalWebSocketRoute(req, socket));
   socket.on("disconnect", () => {
     socket.leave("app");
   });

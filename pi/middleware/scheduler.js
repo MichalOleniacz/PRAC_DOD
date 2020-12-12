@@ -1,7 +1,7 @@
 const cron = require("node-cron");
 
-const scheduler = (...args) => {
-  return cron.schedule("20 * * * * *", () => {
+const scheduler = (timeout, ...args) => {
+  return cron.schedule(timeout, () => {
     for (let i = 0; i < args.length; i++) {
       args[i].run();
     }

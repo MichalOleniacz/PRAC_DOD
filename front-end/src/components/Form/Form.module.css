@@ -1,0 +1,65 @@
+.wrapper {
+  height: 70%;
+  width: 35%;
+  position: relative;
+  border-radius: 66px;
+  background: #ffffff;
+  box-shadow: 41px 41px 72px #dbdbdb, -41px -41px 72px #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s;
+}
+
+.card {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 1s;
+}
+
+.selection {
+  width: 50%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginTitle {
+  font-size: 25px;
+  font-weight: 600;
+}
+.loginToggle {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.inputBox {
+  width: 100%;
+  height: 4vh;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #707070;
+}
+
+.fieldset {
+  width: 70%;
+  height: 6vh;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.submit {
+  height: 6vh;
+  width: 70%;
+  background-color: #000000;
+  color: #ffffff;
+}
